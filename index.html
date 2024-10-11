@@ -1,51 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loan Ecosystem</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styler.css">
+   
 </head>
 <body>
-  <header>
-    <h1>Rapid Loan Facilities</h1>
-  </header>
+    <div class="loan-calculator">
+        <div class="top">
+            <h2>Loan Calculator</h2>
 
-  <main>
-    <section class="loan-form">
-      <h2>Loan Calculator</h2>
-      <form id="loan-form">
-        <div class="form-group">
-          <label for="loan-amount">Loan Amount</label>
-          <input type="number" id="loan-amount" placeholder="Enter loan amount">
+            <form action="main.js">
+                <div class="group">
+                    <div class="title">Amount</div>
+                        <input type="text" value="" class="loan-amount" />
+                    </div>
+                    <div class="group">
+                        <div class="title">Interest Rate</div>
+                            <input type="text" value="" class="interest-rate" />
+                        </div>
+                        <div class="group">
+                            <div class="title">Tenure (in months)</div>
+                                <input type="text" value="" class="Loan-tenure" />
+                            </div>
+            </form>
         </div>
-        <div class="form-group">
-          <label for="interest-rate">Interest Rate (%)</label>
-          <input type="number" id="interest-rate" placeholder="Enter interest rate">
+
+        <div class="result">
+            <div class="left">
+                <div class="lean-emi">
+                    <h3>Loan EMI</h3>
+                    <div class="value">123</div>
+                </div>
+
+                <div class="total-interest">
+                    <h3>Total Interest Payable</h3>
+                    <div class="value">1234</div>
+                </div>
+
+                <div class="total-amount">
+                    <h3>Total Amount</h3>
+                    <div class="value">12345</div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateButton()">Calculate</button>
+            </div>
+
+            <div class="right">Chart</div>
         </div>
-        <div class="form-group">
-          <label for="loan-term">Loan Term (Years)</label>
-          <input type="number" id="loan-term" placeholder="Enter loan term">
-        </div>
-        <button type="button" id="calculate-btn">Calculate</button>
-      </form>
-
-      <div class="result">
-        <h3>Loan Details</h3>
-        <p id="monthly-payment">Monthly Payment: $0.00</p>
-        <p id="total-payment">Total Payment: $0.00</p>
-        <p id="total-interest">Total Interest: $0.00</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 Loan Ecosystem</p>
-  </footer>
-
-  <script src="script.js">
-
-
-  </script>
+    </div>
+    <script src="main.js"></script>
+    <script>
+        function calculateButton(){
+            alert("Hello");
+        }
+    </script>
+    
 </body>
 </html>
