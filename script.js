@@ -1,28 +1,42 @@
-document.getElementById('calculate-btn').addEventListener('click', function() {
-    const loanAmount = parseFloat(document.getElementById('loan-amount').value);
-    const interestRate = parseFloat(document.getElementById('interest-rate').value);
-    const loanTerm = parseFloat(document.getElementById('loan-term').value);
-  
-    if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTerm)) {
-      alert("Please fill out all fields correctly.");
-      return;
-    }
-  
-    // Monthly Interest Rate
-    const monthlyInterestRate = (interestRate / 100) / 12;
-  
-    // Total Number of Payments
-    const totalPayments = loanTerm * 12;
-  
-    // Monthly Payment Calculation (P * r * (1 + r)^n) / ((1 + r)^n - 1)
-    const x = Math.pow(1 + monthlyInterestRate, totalPayments);
-    const monthlyPayment = (loanAmount * monthlyInterestRate * x) / (x - 1);
-  
-    // Total Payment and Interest
-    const totalPayment = monthlyPayment * totalPayments;
-    const totalInterest = totalPayment - loanAmount;
-  
-    document.getElementById('monthly-payment').textContent = Monthly Payment: $${monthlyPayment.toFixed(2)};
-    document.getElementById('total-payment').textContent = Total Payment: $${totalPayment.toFixed(2)};
-    document.getElementById('total-interest').textContent = Total Interest: $${totalInterest.toFixed(2)};
-  });
+const loanAmountInput = document.querySelector(".loan-amount");
+const interestRateInput = document.querySelector(".interest-rate");
+const loanTenureInput = document.querySelector(".loan-tenure");
+
+const loanEMIValue = document.querySelector(".loan-emi.value");
+const totalInterestValue = document.querySelector(".total-interest.value");
+const totalAmountValue = document.querySelector(".total-amount.value");
+alert(loanEMIValue)
+const calculateBtn = document.querySelector(".calculate-btn");
+
+let loanAmount =parseFloat(loanAmountInput.value);
+let interestRate = parseFloat(interestRateInput.value);
+let loanTenure = parseFloat(loanAmountInput.value);
+
+let interest = interestRate / 12 / 100;
+
+const calculateEMI = () => {
+    let emi = loanAmount * interest * (Math.pow(1 + interest, loanTenure) / Math.pow(1+ interest, loanTenure) - 1);
+    return emi;
+};
+
+const updateDate = (emi) => {
+    loanEMIValue.innerHTML = Math.round(emi);
+    let totalAmount = Math.round(loanTenure * emi);
+    totalAmountValue.innerHTML = totalAmount;
+    let totalInterestPayable = Math.round(totalAmount - loanAmount);
+    totalInterestValue.innerHTML = totalInterestPayable;
+    };
+
+    const refreshInputValues = () => {
+        loanAmount = parseFloat(loanAmountInput.value);
+        interestRate = parseFloat(interestRateInput.value);
+        loanTenure = parseFloat(loanTenureInput.value);
+        interest = interestRate / 12 / 100;
+    };
+    
+    const init = () => {
+        let emi = calculateEMI();
+        updateDate(emi);
+    };
+
+init()
